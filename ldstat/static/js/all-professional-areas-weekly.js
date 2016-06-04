@@ -55,7 +55,7 @@ jQuery(document).ready(function($) {
     county_id,
     county_name) {
         // third level
-        $.getJSON("professional_group_weekly?county_id="
+        $.getJSON("/ldstat/professional_group_weekly?county_id="
         + county_id
         + "&professional_area_id="
         + professional_area_id, function(obj) {
@@ -81,7 +81,7 @@ jQuery(document).ready(function($) {
 
     var getProfessionalArea = function(professional_area_id, professional_area_name, previousOptions) {
         // second level
-        $.getJSON("professional_area_weekly?professional_area_id=" + professional_area_id, function(obj) {
+        $.getJSON("/ldstat/professional_area_weekly?professional_area_id=" + professional_area_id, function(obj) {
             var series = [];
 
             for (var series_id in obj) {
@@ -107,7 +107,7 @@ jQuery(document).ready(function($) {
         });
     };
 
-    $.getJSON("/professional_area_weekly", function(obj) {
+    $.getJSON("/ldstat/professional_area_weekly", function(obj) {
         // first level
         // $backButton.hide();
 
