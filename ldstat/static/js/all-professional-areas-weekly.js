@@ -66,7 +66,7 @@ jQuery(document).ready(function($) {
             options.title.text = 'Antal annonser per vecka f\u00F6r ' + professional_area_name + ' i ' + county_name;
             options.series = series;
             options.plotOptions.series.point.events.click = function(e) {
-                window.location.href = '/posts/' + this.series.options.id + '/' + county_id;
+                window.location.href = '/ldstat/posts/' + this.series.options.id + '/' + county_id;
             };
 
 //            $backButton.off();

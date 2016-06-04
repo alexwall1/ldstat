@@ -16,7 +16,7 @@ from
 group by
 	professional_group_id,
 	professional_group_name,
-	professional_area_id,
+	p.professional_area_id,
 	start_time,
 	county_id,
 	county_name
