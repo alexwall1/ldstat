@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <h1>Batches</h1>
+        <table class="table table-striped">
+            <tr><th>Id</th><th>Number of posts</th><th>Number of jobs</th><th>Start</th><th>Execution time</th><th>Complete</th></tr>
+          {% for row in result %}
+            <tr><td>{{ row['batch_id'] }}</td><td>{{ row['num_posts'] }}</td><td>{{ row['num_jobs'] }}</td><td>{{ row['start_time'] }}</td><td>{% if row['execution_time'] %}{{ row['execution_time'] }}{% else %}Not done.{% endif %}</td><td>{{ row['complete'] }}</td></tr>
+          {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

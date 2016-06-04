@@ -1,0 +1,13 @@
+/.idea/
+*.pyc
+*.db
+*.dump
+*.csv
+/pythonenv/
+*.json
+index.py
+/ldstat/config.py
+*.log
+*.pid
+celerybeat-schedule
+*.log.*

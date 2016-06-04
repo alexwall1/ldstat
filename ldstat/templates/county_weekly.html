@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block head %}
+<script src="{{ url_for('static', filename='/js/sorttable.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <h2>Län {{ batches[0].start_time.strftime('%Y-%m-%d') }} jämfört med {{ batches[1].start_time.strftime('%Y-%m-%d') }}</h2>
+
+        <table class="table table-striped table-hover sortable">
+            <tr><th>Län</th><th>Antal annonser</th><th>Förändring (%)</th><th>Antal jobb</th><th>Förändring (%)</th><th>Annonser (+tillkomna / -borttagna)</th></tr>
+            {% for row in result %}
+                <tr class="clickable-row" data-href="#">
+                    <td>{{ row['county_name'] }}</td>
+                    <td>{{ row['num_posts_w1'] }}</td>
+                    <td>{% if row['num_posts_w0'] > 0 %}{{ '%0.2f'|format((row['num_posts_w1'] - row['num_posts_w0']) / row['num_posts_w0'] * 100|float) }}%{% else %}{{ row['num_posts_w1'] - row['num_posts_w0'] }}{% endif %}</td>
+                    <td>{{ row['num_jobs_w1'] }}</td>
+                    <td>{% if row['num_jobs_w0'] %}{{ '%0.2f'|format((row['num_jobs_w1'] - row['num_jobs_w0']) / row['num_jobs_w0'] * 100|float)}}%{% else %}{{ row['num_jobs_w1'] - row['num_jobs_w1'] }}{% endif %}</td>
+                    <td>+{{ row['distinct_num_posts'] - row['num_posts_w0'] }} / -{{ row['distinct_num_posts'] - row['num_posts_w1'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.document.location = $(this).data("href");
+    });
+});
+</script>
+{% endblock %}

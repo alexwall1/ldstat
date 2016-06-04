@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block head %}
+<script src="{{ url_for('static', filename='js/sorttable.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h3>De 100 största annonsörerna för {{ professional_group.name }} i {{ county.name }} ({{ batch.start_time.strftime('%Y-%m-%d') }})</h3>
+    <div class="row">
+        <table class="table table-striped sortable">
+            <tr><th>Rubrik</th><th>Arbetsgivare</th><th>Kommun</th><th>Antal platser</th><th>Publicerad</th></tr>
+            {% for post in posts %}
+                <tr><td><a href="{{ post.match_data['annonsurl'] }}">{{ post.match_data['annonsrubrik'] }}</a></td><td>{{ post.match_data["arbetsplatsnamn"] }}</td><td>{{ post.match_data["kommunnamn"] }}</td><td>{{ post.match_data['antalplatser'] }}</td><td>{{ post.published.strftime('%Y-%m-%d') }}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

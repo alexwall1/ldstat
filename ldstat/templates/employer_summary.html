@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block head %}
+<!--<script src="//d3js.org/d3.v3.min.js"></script>-->
+
+{% endblock %}
+
+{% block body %}
+<div  class="container" style="padding-top: 20px;">
+    <div id="chart" style="height: 600px; min-width: 310px; max-width: 800px; margin: 0 auto">
+    </div>
+    <div style="margin: 0 auto; text-align: center">
+    <a href="{{ url_for('county_time_series') }}" class="btn btn-warning">Geografiskt</a>
+    <a href="{{ url_for('professional_area_time_series') }}" class="btn btn-success">Yrken</a>
+        </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/highcharts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/highcharts-more.js') }}"></script>
+<script src="{{ url_for('static', filename='js/exporting.js') }}"></script>
+<script src="{{ url_for('static', filename='js/employer-summary.js') }}" charset="ISO-8859-1"></script>
+<!--<script type="text/javascript">
+    /* $.getJSON("static/json/employer_summary.json", function(data) {
+        var xMin = d3.min(data, function(d) {
+            return d.num_counties;
+        });
+        console.log('xMin: ' + xMin);
+
+        var xMax = d3.max(data, function(d) {
+            return d.num_counties;
+        });
+        console.log('xMax: ' + xMax);
+
+        var yMin = d3.min(data, function(d) {
+            return d.num_professional_areas;
+        });
+        console.log('yMin: ' + yMin);
+
+        var yMax = d3.max(data, function(d) {
+            return d.num_professional_areas;
+        });
+        console.log('yMax: ' + yMax);
+
+        var xRange = d3.scale.linear().range([0.1 * width, 0.9 * width]).domain([xMin - 1, xMax + 1]);
+        var yRange = d3.scale.linear().range([0.9 * height, 0.1 * height]).domain([yMin - 1, yMax + 1]);
+
+        var xAxis = d3.svg.axis().scale(xRange);
+        var yAxis = d3.svg.axis().scale(yRange).orient('left');
+
+        var vis = d3.select('#plot');
+        vis.append('svg:g').call(xAxis).attr('transform', 'translate(0, ' + (width * 0.9) + ')');
+        vis.append('svg:g').call(yAxis).attr('transform', 'translate('+ (height * 0.1) +', 0)');
+
+        var circles = vis.selectAll("circle").data(data);
+        circles.
+            enter().
+            insert("circle").
+            attr("cx", function(d) { return xRange (d.num_counties); }).
+            attr("cy", function(d) { return yRange (d.num_professional_areas); }).
+            attr("r", function(d) { return d.num_posts / 10; }).
+            style("fill", "red");
+
+        var bodySelection = d3.select("body");
+        var svgSelection = bodySelection.append("svg").attr("width", 640).attr("height", 480);
+        for (int i = 0; i < data.length; i++) {
+            svgSelection.append("circle")
+            .attr("cx", data[i]["num_counties"])
+            .attr("cy", data[i]["num_professional_areas"])
+            .attr("r", data[i]["num_posts"])
+            .style("fill", "purple");
+        }
+    });
+}); */
+</script> -->
+{% endblock %}

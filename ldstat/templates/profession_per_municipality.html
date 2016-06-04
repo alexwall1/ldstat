@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block head %}
+<script src="{{ url_for('static', filename='/js/sorttable.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="/professional_area_per_county">Alla län och yrkesområden</a></li>
+            <li><a href="/professional_group_per_municipality/{{ municipality.county.id }}/{{ professional_group.professional_area.id }}">{{ municipality.county.name }}, {{ professional_group.professional_area.name }}</a></li>
+            <li class="active">{{ municipality.name }}, {{ professional_group.name }}</li>
+        </ol>
+        <table class="table table-striped table-hover sortable">
+            <tr><th>Antal annonser</th><th>Antal jobb</th><th>Kommun</th><th>Yrke</th></tr>
+          {% for row in result %}
+            <tr class="clickable-row" data-href="/posts/{{ row['municipality_id'] }}/{{ row['profession_id'] }}"><td>{{ row['num_posts'] }}</td><td>{{ row['num_jobs'] }}</td><td>{{ row['municipality_name'] }}</td><td>{{ row['profession_name'] }}</td></tr>
+          {% endfor %}
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.document.location = $(this).data('href');
+    });
+});
+</script>
+{% endblock %}

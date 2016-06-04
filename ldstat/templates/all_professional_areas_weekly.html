@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div  class="container" style="padding-top: 20px;">
+    <div id="chart" style="height: 600px; min-width: 310px; max-width: 800px; margin: 0 auto">
+    </div>
+    <!--<div style="padding-top:20px; margin: 0 auto; text-align: center">-->
+        <!--<a href="#" id="back" class="btn btn-primary">Backa</a>-->
+    <!--</div>-->
+</div>
+
+<script src="{{ url_for('static', filename='js/highcharts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/all-professional-areas-weekly.js') }}"></script>
+{% endblock %}

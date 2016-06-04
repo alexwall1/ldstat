@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block head %}
+<!--<script src="//d3js.org/d3.v3.min.js"></script>-->
+
+{% endblock %}
+
+{% block body %}
+<div  class="container" style="padding-top: 20px;">
+    <div id="chart" style="height: 600px; min-width: 310px; max-width: 800px; margin: 0 auto">
+    </div>
+    <div style="margin: 0 auto; text-align: center">
+        <a href="{{ url_for('county_time_series') }}" class="btn btn-warning">Geografiskt</a>
+        <a href="{{ url_for('employer_summary') }}" class="btn btn-primary">Arbetsgivare</a>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/highcharts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/highcharts-more.js') }}"></script>
+<script src="{{ url_for('static', filename='js/exporting.js') }}"></script>
+<script src="{{ url_for('static', filename='js/professional-area-time-series.js') }}" charset="ISO-8859-1"></script>
+<script src="{{ url_for('static', filename='js/county-time-series.js') }}" charset="ISO-8859-1"></script>
+{% endblock %}

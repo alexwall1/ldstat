@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block head %}
+<!--<script src="//d3js.org/d3.v3.min.js"></script>-->
+
+{% endblock %}
+
+{% block body %}
+<div  class="container" style="padding-top: 20px;">
+    <div id="professional-area-chart" style="height: 600px; min-width: 310px; max-width: 800px; margin: 0 auto">
+    </div>
+    <div style="margin: 0 auto; text-align: center">
+    </div>
+</div>
+<div  class="container" style="padding-top: 20px;">
+    <div id="county-chart" style="height: 600px; min-width: 310px; max-width: 800px; margin: 0 auto">
+    </div>
+    <div style="margin: 0 auto; text-align: center">
+    </div>
+</div>
+<div  class="container" style="padding-top: 20px;">
+    <div id="employer-summary-chart" style="height: 600px; min-width: 310px; max-width: 800px; margin: 0 auto">
+    </div>
+    <div style="margin: 0 auto; text-align: center">
+    </div>
+</div>
+<div class="container" style="text-align:center;padding-top: 40px;padding-bottom: 20px;">
+    <a href="/ldstat/static/csv/dump.csv" class="btn btn-primary btn-lg" role="button">Ladda ner data</a>
+</div>
+
+<script src="{{ url_for('static', filename='js/highcharts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/highcharts-more.js') }}"></script>
+<script src="{{ url_for('static', filename='js/exporting.js') }}"></script>
+<script src="{{ url_for('static', filename='js/professional-area-time-series.js') }}" charset="ISO-8859-1"></script>
+<script src="{{ url_for('static', filename='js/county-time-series.js') }}" charset="ISO-8859-1"></script>
+<script src="{{ url_for('static', filename='js/employer-summary.js') }}" charset="ISO-8859-1"></script>
+{% endblock %}
