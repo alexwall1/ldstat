@@ -6,16 +6,38 @@
 
 {% block body %}
 <div  class="container" style="padding-top: 20px;">
-    <h1>De mest annonserade yrkestitlarna per månad</h1>
+    <h1 style="text-align: center;">Vanligast annonserade yrkestitlar (<a href="/ldstat/all_professional_areas_weekly">tidsserie</a>)</h1>
     <div class="row">
         <table class="table table-striped sortable">
-            <th>Yrke</th><th>Februari</th><th>Mars</th><th>April</th>
+            <th>Yrke</th><th>Februari</th><th>Rank</th><th>Mars</th><th>Rank</th><th>April</th><th>Rank</th>
             {% for row in result %}
             <tr>
-            <td>{{ row['profession'] }}</td><td>{{ row['c2'] }}</td><td>{{ row['c3'] }}</td><td>{{ row['c4'] }}</td>
+                <td>{{ row['profession'] }}</td>
+                <td>{{ row['c2'] }}</td>
+                <td>{{ row['rank2'] }}</td>
+                <td>{{ row['c3'] }}</td>
+                <td>{{ row['rank3'] }}</td>
+                <td>{{ row['c4'] }}</td>
+                <td>{{ row['rank4'] }}</td>
             </tr>
             {% endfor %}
         </table>
     </div>
 </div>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    var tableRow = $("td").filter(function() {
+    return $(this).text() == "1";
+    }).closest("tr");
+    tableRow.addClass('success');
+    var tableRow = $("td").filter(function() {
+    return $(this).text() == "2";
+    }).closest("tr");
+    tableRow.addClass('active');
+    var tableRow = $("td").filter(function() {
+    return $(this).text() == "3";
+    }).closest("tr");
+    tableRow.addClass('warning');
+});
+</script>
 {% endblock %}

@@ -312,4 +312,4 @@ def all_professional_areas_weekly():
 
 @app.route("/")
 def index():
-    return redirect(url_for('all_professional_areas_weekly'))
+    return redirect(url_for('most_common'))

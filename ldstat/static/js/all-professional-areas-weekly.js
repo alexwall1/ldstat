@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
     var chart = null;
     var $backButton = $("#back");
-    var prefix = '';
+    var prefix = '/ldstat';
 
     var options = {
         chart: {
