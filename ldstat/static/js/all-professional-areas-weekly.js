@@ -1,6 +1,7 @@
 jQuery(document).ready(function($) {
     var chart = null;
     var $backButton = $("#back");
+    var prefix = '';
 
     var options = {
         chart: {
@@ -32,6 +33,18 @@ jQuery(document).ready(function($) {
         },
         plotOptions: {
             series: {
+                events: {
+//                    legendItemClick: function(e) {
+//                        console.log('clicked legend for series ' + this.index);
+//                        var series = this.chart.series;
+//                        for (var i = 0; i < series.length; i++) {
+//                            if (series[i].index != this.index) {
+//                                console.log('series[' + i + '].visible: ' + series[i].visible);
+//                                series[i].visible ? series[i].hide() : series[i].show();
+//                            }
+//                        }
+//                    }
+                },
                 cursor: 'pointer',
                 point: {
                     events: {
@@ -43,9 +56,9 @@ jQuery(document).ready(function($) {
             }
         },
         legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom',
             borderWidth: 0
         }
     };
@@ -55,7 +68,7 @@ jQuery(document).ready(function($) {
     county_id,
     county_name) {
         // third level
-        $.getJSON("/ldstat/professional_group_weekly?county_id="
+        $.getJSON(prefix + "/professional_group_weekly?county_id="
         + county_id
         + "&professional_area_id="
         + professional_area_id, function(obj) {
@@ -65,9 +78,10 @@ jQuery(document).ready(function($) {
             }
             options.title.text = 'Antal annonser per vecka f\u00F6r ' + professional_area_name + ' i ' + county_name;
             options.series = series;
-            options.plotOptions.series.point.events.click = function(e) {
-                window.location.href = '/ldstat/posts/' + this.series.options.id + '/' + county_id;
-            };
+
+//            options.plotOptions.series.point.events.click = function(e) {
+//                window.location.href = '/ldstat/posts/' + this.series.options.id + '/' + county_id;
+//            };
 
 //            $backButton.off();
 //            $backButton.click(function() {
@@ -81,7 +95,7 @@ jQuery(document).ready(function($) {
 
     var getProfessionalArea = function(professional_area_id, professional_area_name, previousOptions) {
         // second level
-        $.getJSON("/ldstat/professional_area_weekly?professional_area_id=" + professional_area_id, function(obj) {
+        $.getJSON(prefix + "/professional_area_weekly?professional_area_id=" + professional_area_id, function(obj) {
             var series = [];
 
             for (var series_id in obj) {
@@ -107,7 +121,7 @@ jQuery(document).ready(function($) {
         });
     };
 
-    $.getJSON("/ldstat/professional_area_weekly", function(obj) {
+    $.getJSON(prefix + "/professional_area_weekly", function(obj) {
         // first level
         // $backButton.hide();
 
