@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block head %}
+<script src="{{ url_for('static', filename='js/sorttable.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+<div  class="container" style="padding-top: 20px;">
+    <h1>De mest annonserade yrkestitlarna per månad</h1>
+    <div class="row">
+        <table class="table table-striped sortable">
+            <th>Yrke</th><th>Februari</th><th>Mars</th><th>April</th>
+            {% for row in result %}
+            <tr>
+            <td>{{ row['profession'] }}</td><td>{{ row['c2'] }}</td><td>{{ row['c3'] }}</td><td>{{ row['c4'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

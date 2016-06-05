@@ -80,6 +80,11 @@ def batch_info():
 #     return render_template('posts.html', posts=posts, batch=batch, municipality=municipality, profession=profession,
 #                            county=county, professional_group=professional_group, professional_area=professional_area)
 
+@app.route("/most_common")
+def most_common():
+    result = db_session.execute('select * from most_common_profession')
+    return render_template('most_common.html', result=result)
+
 
 @app.route("/posts/<professional_group_id>/<county_id>")
 def posts(professional_group_id, county_id):
